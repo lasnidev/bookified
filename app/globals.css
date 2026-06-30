@@ -168,7 +168,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground pt-[var(--navbar-height)];
   }
 }
 
@@ -212,7 +212,7 @@
   .file-upload-shadow {
     @apply relative z-20 flex flex-col justify-center items-center p-7;
   }
-  .form-btn {
+    .form-btn {
     @apply !w-full h-14 rounded-[10px] bg-[#663820] cursor-pointer hover:bg-[#7a4528] text-xl text-white font-bold transition-colors;
     font-family: 'IBM Plex Serif', serif;
   }
@@ -275,6 +275,7 @@
   /* Button utilities */
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white font-bold rounded-[10px] transition-colors;
+
     font-family: 'IBM Plex Serif', serif;
   }
   .btn-secondary {
@@ -312,6 +313,9 @@
   /* ===========================================
      NAVBAR COMPONENT
      =========================================== */
+  .navbar {
+    @apply fixed inset-x-0 top-0 z-50 w-full border-b border-[var(--border-subtle)] bg-[var(--bg-primary)];
+  }
   .logo-text {
     @apply font-semibold text-xl hidden sm:block text-black;
   }
@@ -410,6 +414,7 @@
   }
   .vapi-cover-image {
     @apply relative w-[130px] h-[195px] sm:w-[162px] sm:h-[240px] rounded-lg object-cover;
+
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.1);
   }
   .vapi-mic-wrapper {
@@ -445,6 +450,7 @@
   }
   .vapi-badge-ai-text {
     @apply text-sm font-medium text-[#212a3b];
+
     font-family: 'IBM Plex Serif', serif;
   }
   .vapi-status-indicator {
@@ -470,6 +476,7 @@
   }
   .vapi-status-text {
     @apply text-sm font-medium text-[#212a3b];
+
     font-family: 'IBM Plex Serif', serif;
   }
   .vapi-stat-box {
@@ -480,10 +487,12 @@
   }
   .vapi-stat-label {
     @apply text-lg font-medium text-[#212a3b] mb-3;
+
     font-family: 'IBM Plex Serif', serif;
   }
   .vapi-stat-value-lg {
     @apply text-[30px] font-semibold text-black leading-9;
+
     font-family: 'IBM Plex Serif', serif;
   }
   .vapi-stat-value-sm {
@@ -522,24 +531,29 @@
   }
   .library-cta-primary {
     @apply inline-flex h-14 w-full items-center justify-center gap-3 rounded-[10px] bg-white px-9 text-xl font-bold text-[var(--text-primary)] transition-all sm:w-fit;
+
     font-family: 'IBM Plex Serif', serif;
 
     &:hover {
       @apply bg-gray-50;
+
       box-shadow: var(--shadow-soft);
     }
   }
   .library-cta-secondary {
     @apply inline-flex items-center gap-2 bg-white text-[var(--text-primary)] px-5 py-3 rounded-[10px] font-bold text-xl transition-all;
+
     font-family: 'IBM Plex Serif', serif;
 
     &:hover {
       @apply bg-gray-50;
+
       box-shadow: var(--shadow-soft);
     }
   }
   .library-steps-card {
     @apply flex min-w-0 w-full flex-col gap-6 rounded-[10px] bg-white px-5 py-5 text-left lg:min-h-[290px] lg:w-full lg:max-w-[282px] lg:justify-self-end;
+
     list-style: none;
   }
   .library-steps-card div {
@@ -547,6 +561,7 @@
   }
   .library-step-item {
     @apply flex items-start gap-3;
+
     list-style: none;
   }
   .library-step-number {
@@ -637,6 +652,7 @@
   }
   .voice-selector-option {
     @apply flex min-h-20 items-center justify-start gap-3 p-4 border border-[var(--border-subtle)] rounded-lg cursor-pointer transition-all focus-within:ring-2 focus-within:ring-[#663820]/30;
+
     box-shadow: var(--shadow-soft-sm);
 
     &:hover {
@@ -682,6 +698,7 @@
   }
   .book-card-cover {
     @apply w-auto h-[170px] md:h-[200px] object-cover rounded-lg;
+
     box-shadow: var(--shadow-book);
   }
   .book-card-meta {
@@ -689,6 +706,7 @@
   }
   .book-card-title {
     @apply font-bold text-[#212a3b] line-clamp-1 text-base md:text-xl leading-[22px] md:leading-[30px];
+
     font-family: 'IBM Plex Serif', serif;
   }
   .book-card-author {
@@ -743,6 +761,7 @@
      =========================================== */
   .back-btn-floating {
     @apply fixed top-24 left-6 z-50 size-12 rounded-full bg-white border border-[var(--border-subtle)] flex items-center justify-center transition-all;
+
     box-shadow: var(--shadow-soft);
 
     &:hover {
@@ -939,13 +958,6 @@ button[data-variant='unstyled'] *,
   font-weight: 600 !important;
 }
 
-/* Add accent border to active plan card
-   Note: This uses :first-child which assumes active plan is always first.
-   If Clerk changes the order, this may highlight the wrong card. */
-.cl-pricingTableCard:first-child {
-  border: 2px solid #663820 !important;
-}
-
 /* Style the Active badge with better contrast */
 .cl-badge,
 .cl-pricingTableCard [class*='badge'],
@@ -955,20 +967,4 @@ button[data-variant='unstyled'] *,
   font-weight: 600 !important;
   padding: 0.25rem 0.75rem !important;
   border-radius: 9999px !important;
-}
-
-/* Add "Current Plan" indicator to active plan that doesn't have a button
-   Note: Hardcoded English text - if i18n support is needed, this should be
-   handled in JavaScript with translated strings rendered in the DOM. */
-.cl-pricingTableCard:first-child .cl-pricingTableCardContent::after {
-  content: 'Your Current Plan';
-  display: block;
-  text-align: center;
-  padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  background-color: #f3e4c7 !important;
-  color: #212a3b !important;
-  font-weight: 600;
-  border-radius: 0.75rem;
-  font-size: 1.125rem;
 }
